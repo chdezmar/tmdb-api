@@ -1,0 +1,26 @@
+<%= form_with(model: movie, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :movie_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :movie_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :release_date %>
+    <%= form.text_field :release_date, id: :movie_release_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :runtime %>
+    <%= form.number_field :runtime, id: :movie_runtime %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

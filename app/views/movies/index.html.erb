@@ -1,0 +1,35 @@
+<h1>Movies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Release date</th>
+      <th>Runtime</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.description %></td>
+        <td><%= movie.release_date %></td>
+        <td><%= movie.runtime %></td>
+        <td><%= link_to 'Show', movie %></td>
+        <% if current_user && current_user.id == movie.user_id %>
+          <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+          <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user %>
+  <%= link_to 'Add a New Movie', new_movie_path %>
+<% end %>

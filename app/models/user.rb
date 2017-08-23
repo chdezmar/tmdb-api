@@ -3,4 +3,6 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 8 }
+
+  has_many :movies
 end
