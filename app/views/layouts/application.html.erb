@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moviedb</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
+
+    <% if current_user %>
+      <%= link_to "Log out", logout_path %>
+    <% else %>
+      <div id="user_header">
+        <%= link_to "Sign Up", new_user_path %>
+        <%= link_to "Log In", new_session_path %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
