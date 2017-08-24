@@ -1,4 +1,4 @@
 class Movie < ApplicationRecord
   validates_presence_of :title, :release_date
-  belongs_to :user
+  belongs_to :user, optional: true
 end

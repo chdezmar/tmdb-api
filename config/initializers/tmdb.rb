@@ -1,0 +1,1 @@
+Tmdb::Api.key(Rails.application.secrets.moviedb_key)
