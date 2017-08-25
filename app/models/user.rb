@@ -5,4 +5,5 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }
 
   has_many :movies
+  has_many :ratings
 end

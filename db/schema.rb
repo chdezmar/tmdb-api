@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823191512) do
+ActiveRecord::Schema.define(version: 20170824191238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "casts", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_casts_on_movie_id"
+    t.index ["person_id"], name: "index_casts_on_person_id"
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -26,6 +35,23 @@ ActiveRecord::Schema.define(version: 20170823191512) do
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
+  create_table "people", force: :cascade do |t|
+    t.string "name"
+    t.boolean "director"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating"
+    t.bigint "user_id"
+    t.bigint "movie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_ratings_on_movie_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -33,5 +59,9 @@ ActiveRecord::Schema.define(version: 20170823191512) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "casts", "movies"
+  add_foreign_key "casts", "people"
   add_foreign_key "movies", "users"
+  add_foreign_key "ratings", "movies"
+  add_foreign_key "ratings", "users"
 end
