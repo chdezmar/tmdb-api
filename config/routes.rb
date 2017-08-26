@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :movies do
-    resources :ratings
+    resources :ratings, except: [:index, :show]
   end
   resources :sessions
   resources :users

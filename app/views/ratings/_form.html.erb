@@ -1,0 +1,11 @@
+<%= form_for([@movie, @rating]) do |form| %>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.text_field :rating, id: :rating %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
