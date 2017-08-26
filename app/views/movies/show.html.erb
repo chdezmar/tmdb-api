@@ -17,6 +17,21 @@
   <strong>Runtime:</strong>
   <%= @movie.runtime %>
 </p>
+
+<p>
+  <strong>Director/s:</strong>
+  <% @movie.director.each do |director| %>
+  <%= director.person.name %>
+  <% end %>
+</p>
+
+
+<p>
+  <strong>Actors:</strong>
+  <% @movie.cast.each do |actor| %>
+    <li><%= actor.person.name %></li>
+  <% end %>
+</p>
 <% if current_user && current_user.id == @movie.user_id %>
   <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <% end %>

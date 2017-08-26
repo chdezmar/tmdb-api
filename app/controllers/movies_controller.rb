@@ -25,7 +25,9 @@ class MoviesController < ApplicationController
   # POST /movies.json
   def create
     @movie = Movie.new(movie_params)
-    @movie.user = current_user
+    @movie.user = current_user if current_user
+    add_director
+    add_actors
     respond_to do |format|
       if @movie.save
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
@@ -40,6 +42,8 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
+    add_director
+    add_actors
     respond_to do |format|
       if @movie.update(movie_params)
         format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
@@ -67,8 +71,33 @@ class MoviesController < ApplicationController
       @movie = Movie.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def add_actors
+      if !actor_params.blank?
+        @movie.cast.destroy_all
+        actor_params[:actors].each do |person_id|
+          @movie.cast.new(person_id: person_id)
+        end
+      end
+    end
+
+    def add_director
+      if !director_params.blank?
+        @movie.director.destroy_all
+        director_params[:director].each do |person_id|
+          @movie.director.new(person_id: person_id)
+        end
+      end
+    end
+
     def movie_params
-      params.require(:movie).permit(:title, :description, :release_date, :runtime)
+      params.require(:movie).permit(:title, :description, :release_date, :runtime, :original_rating)
+    end
+
+    def director_params
+      params.require(:movie).permit(:director => [])
+    end
+
+    def actor_params
+      params.require(:movie).permit(:actors => [])
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825114409) do
+ActiveRecord::Schema.define(version: 20170825142300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20170825114409) do
     t.datetime "updated_at", null: false
     t.index ["movie_id"], name: "index_casts_on_movie_id"
     t.index ["person_id"], name: "index_casts_on_person_id"
+  end
+
+  create_table "directors", force: :cascade do |t|
+    t.bigint "movie_id"
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_directors_on_movie_id"
+    t.index ["person_id"], name: "index_directors_on_person_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -38,7 +47,6 @@ ActiveRecord::Schema.define(version: 20170825114409) do
 
   create_table "people", force: :cascade do |t|
     t.string "name"
-    t.boolean "director"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,6 +70,8 @@ ActiveRecord::Schema.define(version: 20170825114409) do
 
   add_foreign_key "casts", "movies"
   add_foreign_key "casts", "people"
+  add_foreign_key "directors", "movies"
+  add_foreign_key "directors", "people"
   add_foreign_key "movies", "users"
   add_foreign_key "ratings", "movies"
   add_foreign_key "ratings", "users"

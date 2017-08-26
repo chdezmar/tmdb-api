@@ -20,7 +20,24 @@
     <%= form.number_field :runtime, id: :movie_runtime %>
   </div>
 
-  <div class="actions">
+  <div class="field">
+    <%= form.label :rating%>
+    <%= form.text_field :original_rating, id: :movie_original_rating %>
+  </div>
+
+  <div class="field">
+    <%= form.label :director%>
+    <%= form.collection_select(:director, Person.all, :id, :name, {include_hidden: false, :selected => movie.director.map(&:person_id)}, {multiple: true, id:'pre-selected-director'}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :actors%>
+    <%= form.collection_select(:actors, Person.all, :id, :name, {include_hidden: false, :selected => movie.cast.map(&:person_id)}, {multiple: true, id:'pre-selected-cast'}) %>
+  </div>
+
+
+
+    <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

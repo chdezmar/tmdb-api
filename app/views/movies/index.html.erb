@@ -21,7 +21,7 @@
         <td><%= link_to 'Show', movie %></td>
         <% if current_user && current_user.id == movie.user_id %>
           <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-          <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Remove', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
