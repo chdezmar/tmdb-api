@@ -3,17 +3,14 @@ class RatingsController < ApplicationController
   before_action :set_movie
   #before_action :authenticate! -> so only logged in users can review
 
-  # GET /ratings/new
   def new
     @rating = Rating.new
   end
 
-  # GET /ratings/1/edit
   def edit
   end
 
-  # POST /ratings
-  # POST /ratings.json
+
   def create
     @rating = Rating.new(rating_params)
     @rating.user_id = current_user.id
@@ -29,12 +26,10 @@ class RatingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /ratings/1
-  # PATCH/PUT /ratings/1.json
   def update
     respond_to do |format|
       if @rating.update(rating_params)
-        format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
+        format.html { redirect_to @movie, notice: 'Rating was successfully updated.' }
         format.json { render :show, status: :ok, location: @rating }
       else
         format.html { render :edit }
@@ -43,12 +38,11 @@ class RatingsController < ApplicationController
     end
   end
 
-  # DELETE /ratings/1
-  # DELETE /ratings/1.json
+
   def destroy
     @rating.destroy
     respond_to do |format|
-      format.html { redirect_to ratings_url, notice: 'Rating was successfully destroyed.' }
+      format.html { redirect_to @movie, notice: 'Rating was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

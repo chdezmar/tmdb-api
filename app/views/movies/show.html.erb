@@ -14,6 +14,21 @@
 </p>
 
 <p>
+  <strong>Average rating:</strong>
+  <%= @movie.total_average_rating %>
+</p>
+
+<p>
+  <strong>TMDB/original rating:</strong>
+  <%= @movie.original_rating %>
+</p>
+
+<p>
+  <strong>User's rating:</strong>
+  <%= @movie.users_average_rating %>
+</p>
+
+<p>
   <strong>Runtime:</strong>
   <%= @movie.runtime %>
 </p>
@@ -32,6 +47,20 @@
     <li><%= actor.person.name %></li>
   <% end %>
 </p>
+
+
+<% if !current_user_rating.blank? %>
+    Your rating was <%= current_user_rating.first.rating %>
+    <br>
+    <%= link_to 'Edit rating', edit_movie_rating_path(@movie,current_user_rating.first)  if current_user %>
+    <%= link_to 'Remove', movie_rating_path(@movie,current_user_rating.first), method: :delete, data: { confirm: 'Are you sure?' } if current_user %>
+<% else %>
+    <%= link_to 'Add rating', new_movie_rating_path(@movie) if current_user %>
+<% end %>
+
+<br>
+<br>
+
 <% if current_user && current_user.id == @movie.user_id %>
   <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <% end %>

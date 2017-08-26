@@ -5,4 +5,16 @@ class Movie < ApplicationRecord
   has_many :director
   has_many :people, -> { distinct }, through: [:cast, :director]
   has_many :ratings
+
+
+  def users_average_rating
+    self.ratings.where(movie_id: self.id).average(:rating)
+  end
+
+  def total_average_rating
+    (users_average_rating + self.original_rating) / 2
+  end
+
+
+
 end
