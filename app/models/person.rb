@@ -4,4 +4,5 @@ class Person < ApplicationRecord
   has_many :cast
   has_many :director
   has_many :movies, -> { distinct }, through: [:cast, :director]
+  validates_uniqueness_of :name
 end
