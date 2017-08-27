@@ -49,7 +49,7 @@
 </p>
 
 
-<% if !current_user_rating.blank? %>
+<% if current_user && !current_user_rating.blank? %>
     Your rating was <%= current_user_rating.first.rating %>
     <br>
     <%= link_to 'Edit rating', edit_movie_rating_path(@movie,current_user_rating.first)  if current_user %>

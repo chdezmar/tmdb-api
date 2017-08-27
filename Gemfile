@@ -36,6 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'themoviedb-api'
 
 gem 'rails-assets-jquery', source: 'https://rails-assets.org'
+gem 'rails-assets-bootstrap', source: 'https://rails-assets.org'
 
 gem 'will_paginate', '~> 3.1.0'
 

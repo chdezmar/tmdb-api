@@ -1,0 +1,44 @@
+.navbar {
+  background-color: black;
+}
+
+.container {
+  width: 85%;
+  margin: 0 auto;
+}
+
+/* Start Logo */
+
+.navbar{
+  border-radius: 0px;
+}
+.navbar .container .logo {
+  width: 15%;
+  float: left;
+  padding-top: 8px
+}
+
+.navbar .container .logo h1 {
+  color: white;
+}
+/* End Logo */
+/* Start Links */
+
+.navbar .container .links {
+  width: 85%;
+  float: left;
+}
+
+.navbar .container .links ul {
+  float: right;
+}
+
+.navbar .container .links ul li {
+  display: inline-block;
+  padding: 15px;
+}
+
+.navbar .container .links ul li a {
+  color: #F7A072;
+  font-size: 18px;
+}

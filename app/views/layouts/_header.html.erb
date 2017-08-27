@@ -1,0 +1,27 @@
+<div class="navbar">
+  <div class="container">
+    <div class="logo title-font">
+      <h1>
+        <%= link_to 'TMDB Upcoming Movies', root_url,  style: 'color:white;text-decoration: none;' %>
+      </h1>
+    </div>
+    <div class="toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="links">
+      <ul>
+        <% if current_user %>
+            <li><%= link_to "Log out", logout_path %></li>
+        <% else %>
+            <div id="user_header">
+              <li><%= link_to "Sign Up", new_user_path %></li>
+              <li><%= link_to "Log In", new_session_path %></li>
+            </div>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

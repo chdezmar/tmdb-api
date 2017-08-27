@@ -1,0 +1,24 @@
+body{
+  padding-top: 20px;
+  padding-bottom: 40px;
+  background-color: white;
+}
+
+/* Start Reset Some Elements */
+html,
+body,
+h1,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+.space{
+  padding: 1em;
+}

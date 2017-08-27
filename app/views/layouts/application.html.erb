@@ -3,24 +3,25 @@
   <head>
     <title>Moviedb</title>
     <%= csrf_meta_tags %>
-
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if flash[:notice] %>
-        <div id="notice"><%= flash[:notice] %></div>
-    <% end %>
+    <%= render 'layouts/header' %>
 
-    <% if current_user %>
-      <%= link_to "Log out", logout_path %>
-    <% else %>
-      <div id="user_header">
-        <%= link_to "Sign Up", new_user_path %>
-        <%= link_to "Log In", new_session_path %>
+    <div class="container">
+      <div class="row">
+        <% if flash[:notice] %>
+            <div id="notice"><%= flash[:notice] %></div>
+        <% end %>
+        <div class="col-md-2 col-sm-1"></div>
+        <div class="col-md-8 col-sm-10">
+          <%= yield %>
+        <div class="col-md-2 col-sm-1"></div>
+
       </div>
-    <% end %>
-    <%= yield %>
+    </div>
   </body>
 </html>

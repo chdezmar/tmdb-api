@@ -1,43 +1,44 @@
-<%= form_with(model: movie, local: true) do |form| %>
+<div class="container">
+  <%= form_with(model: movie, local: true) do |form| %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :movie_title %>
-  </div>
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title,class: 'form-control', id: :movie_title %>
+    </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :movie_description %>
-  </div>
+    <div class="form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description,class: 'form-control', rows: "3", id: :movie_description %>
+    </div>
 
-  <div class="field">
-    <%= form.label :release_date %>
-    <%= form.text_field :release_date, id: :movie_release_date %>
-  </div>
+    <div class="form-group">
+      <%= form.label :release_date %>
+      <%= form.text_field :release_date,class: 'form-control', id: :movie_release_date %>
+    </div>
 
-  <div class="field">
-    <%= form.label :runtime %>
-    <%= form.number_field :runtime, id: :movie_runtime %>
-  </div>
+    <div class="form-group">
+      <%= form.label :runtime %>
+      <%= form.number_field :runtime,class: 'form-control', id: :movie_runtime %>
+    </div>
 
-  <div class="field">
-    <%= form.label :rating%>
-    <%= form.text_field :original_rating, id: :movie_original_rating %>
-  </div>
+    <div class="form-group">
+      <%= form.label :rating%>
+      <%= form.text_field :original_rating,class: 'form-control', id: :movie_original_rating %>
+    </div>
 
-  <div class="field">
-    <%= form.label :director%>
-    <%= form.collection_select(:director, Person.all, :id, :name, {include_hidden: false, :selected => movie.director.map(&:person_id)}, {multiple: true, id:'pre-selected-director'}) %>
-  </div>
+    <div class="form-group">
+      <%= form.label :director%>
+      <%= form.collection_select(:director, Person.all, :id, :name, {include_hidden: false, :selected => movie.director.map(&:person_id)}, {multiple: true, id:'pre-selected-director'}) %>
+    </div>
 
-  <div class="field">
-    <%= form.label :actors%>
-    <%= form.collection_select(:actors, Person.all, :id, :name, {include_hidden: false, :selected => movie.cast.map(&:person_id)}, {multiple: true, id:'pre-selected-cast'}) %>
-  </div>
+    <div class="form-group">
+      <%= form.label :actors%>
+      <%= form.collection_select(:actors, Person.all, :id, :name, {include_hidden: false, :selected => movie.cast.map(&:person_id)}, {multiple: true, id:'pre-selected-cast'}) %>
+    </div>
 
-
-
-    <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+      <br>
+      <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
