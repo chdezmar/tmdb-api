@@ -1,10 +1,11 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /movies
   # GET /movies.json
   def index
-    @movies = Movie.all.order(release_date: :desc).paginate(:page => params[:page], :per_page => 20)
+    @movies = Movie.all.order(sort_column + ' ' + sort_direction).search(search_params).paginate(page: params[:page], per_page: 20)
   end
 
   # GET /movies/1
@@ -89,6 +90,14 @@ class MoviesController < ApplicationController
       end
     end
 
+    def sort_column
+      params[:sort] || 'title'
+    end
+
+    def sort_direction
+      params[:direction] || 'asc'
+    end
+
     def movie_params
       params.require(:movie).permit(:title, :description, :release_date, :runtime, :original_rating)
     end
@@ -99,5 +108,9 @@ class MoviesController < ApplicationController
 
     def actor_params
       params.require(:movie).permit(:actors => [])
+    end
+
+    def search_params
+      params.permit(:q,:by, :sort, :minrating ,:maxrating)
     end
 end

@@ -5,7 +5,7 @@ class Movie < ApplicationRecord
   belongs_to :user, optional: true
   has_many :cast, dependent: :destroy
   has_many :director, dependent: :destroy
-  has_many :people, -> { distinct }, through: [:cast, :director]
+  has_many :people, -> { distinct }, through: [:director, :cast]
   has_many :ratings, dependent: :destroy
 
 
@@ -17,10 +17,25 @@ class Movie < ApplicationRecord
     begin
       (users_average_rating + self.original_rating) / 2
     rescue
-      self.original_rating
+      self.original_rating || 0
     end
   end
 
-
-
+  def self.search(search)
+    case search[:by]
+    when '0'
+      @search = where("title ILIKE ?", "%#{search[:q]}%")
+    when '1'
+      @search = all
+      # Something wrong with => has_many :people, -> { distinct }, through: [:director, :cast]
+      #joins(:director).joins(:people).where("name ILIKE ?", "%#{search[:q]}%").distinct
+    when '2'
+      @search = all
+      #joins(:cast).joins(:people).where("name ILIKE ?", "%#{search[:q]}%").distinct
+    else
+      @search = all
+    end
+    #@search = where("original_rating <= ?", search[:maxrating]) if search[:maxrating]
+    #@search = where("original_rating >= ?", search[:minrating]) if search[:minrating]
+  end
 end
