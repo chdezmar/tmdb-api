@@ -1,24 +1,18 @@
-# README
+#TMDB Upcoming movies
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##Details
+- Rails 5.1 app
+- PSQL
+- User authentication (has_secure_password with bcrytp)
+- List of upcoming movies from [Tmdb API](https://www.themoviedb.org/)
+- Users can add, edit and remove movies and ratings
+- Search by movie title, sort by title, release_date and rating
+- List of upcoming movies updated everyday (cron job using wheneverize gem)
+- Bootstrap styling
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##Gems
+- 'themoviedb-api'
+- 'rails-assets-jquery'
+- 'rails-assets-bootstrap'
+- 'will_paginate'
+- 'whenever'

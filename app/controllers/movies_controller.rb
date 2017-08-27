@@ -91,11 +91,11 @@ class MoviesController < ApplicationController
     end
 
     def sort_column
-      params[:sort] || 'title'
+      params[:sort] || 'release_date'
     end
 
     def sort_direction
-      params[:direction] || 'asc'
+      params[:direction] || 'desc'
     end
 
     def movie_params
