@@ -35,7 +35,7 @@ module TmdbImporter
   def self.add_movies
     self.movies_hash.each do |m|
       begin
-        movie = Movie.new(m)
+        movie = Movie.new(m.except(:original_id))
         movie.save!
       rescue
         movie = Movie.find_by_title(m[:title])
